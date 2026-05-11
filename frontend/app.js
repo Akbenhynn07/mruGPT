@@ -1,6 +1,6 @@
 // SET YOUR LIVE RENDER URL HERE (e.g., https://your-app-name.onrender.com)
 // For local testing, keep it as http://localhost:8080
-const API_BASE_URL = "https://mrugpt-api.onrender.com"; // UPDATE THIS
+const API_BASE_URL = "https://mrugpt.onrender.com";
 
 document.addEventListener('DOMContentLoaded', () => {
     const chatWindow = document.getElementById('chatWindow');
