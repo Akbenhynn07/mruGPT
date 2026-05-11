@@ -24,24 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const greetingHeader = document.getElementById('greetingHeader');
     const greetingSubheader = document.getElementById('greetingSubheader');
 
-    // AI Dynamic Greeting
-    if (greetingSubheader) {
-        const greetings = [
-            "Ready to conquer your classes?",
-            "Let's boost your productivity.",
-            "How can I make your day easier?",
-            "Your academic assistant is ready.",
-            "Let's crush those assignments.",
-            "What's on the agenda today?",
-            "Stay ahead of your schedule.",
-            "Ready to check your attendance?",
-            "Let's optimize your study time."
-        ];
-        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-        greetingSubheader.textContent = randomGreeting;
-    }
-
-    // Generate Background Particles
+    // AI Dynamic Greeting Loading States
     const particlesContainer = document.getElementById('particlesContainer');
     if (particlesContainer) {
         const colors = ['#00e5ff', '#9b72cb', '#d96570'];
@@ -91,8 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.error("Failed to fetch greeting:", err);
+                const fallbacks = [
+                    "Ready to conquer your classes?",
+                    "Let's boost your productivity.",
+                    "How can I make your day easier?",
+                    "Your academic assistant is ready.",
+                    "Let's crush those assignments.",
+                    "What's on the agenda today?",
+                    "Stay ahead of your schedule.",
+                    "Ready to check your attendance?",
+                    "Let's optimize your study time."
+                ];
                 greetingHeader.innerHTML = `<span class="gradient-text">Hi Student</span>`;
-                greetingSubheader.textContent = "What can we get done today?";
+                greetingSubheader.textContent = fallbacks[Math.floor(Math.random() * fallbacks.length)];
             });
     }
 
