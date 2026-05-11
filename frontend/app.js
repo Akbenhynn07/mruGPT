@@ -25,6 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const greetingSubheader = document.getElementById('greetingSubheader');
 
     // AI Dynamic Greeting
+    if (greetingSubheader) {
+        const greetings = [
+            "What can we get done today?",
+            "Ready to conquer your classes?",
+            "Let's boost your productivity.",
+            "How can I make your day easier?",
+            "Your academic assistant is ready.",
+            "Let's crush those assignments.",
+            "What's on the agenda today?",
+            "Stay ahead of your schedule.",
+            "Ready to check your attendance?",
+            "Let's optimize your study time."
+        ];
+        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+        greetingSubheader.textContent = randomGreeting;
+    }
+
     // Generate Background Particles
     const particlesContainer = document.getElementById('particlesContainer');
     if (particlesContainer) {

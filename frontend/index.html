@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mruGPT</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=12">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#131314">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -77,7 +77,18 @@
                     <div class="greeting">
                         <div class="floating-widget"></div>
                         <h1 id="greetingHeader"><span class="gradient-text">Hi Student</span></h1>
-                        <h2 id="greetingSubheader">What can we get done?</h2>
+                        <h2 id="greetingSubheader">What can we get done today?</h2>
+                    </div>
+                    
+                    <div class="suggestion-chips" id="suggestionChips">
+                        <button class="chip" id="attendanceBtn">
+                            <span class="material-symbols-outlined" style="color: #4ade80;">assignment_ind</span>
+                            <span class="chip-text">Check Attendance</span>
+                        </button>
+                        <button class="chip" id="timetableBtn">
+                            <span class="material-symbols-outlined" style="color: #60a5fa;">calendar_month</span>
+                            <span class="chip-text">Today's Classes</span>
+                        </button>
                     </div>
                 </div>
 
@@ -105,23 +116,12 @@
                             </button>
                         </div>
                     </form>
-                    
-                    <div class="suggestion-chips" id="suggestionChips">
-                        <button class="chip" id="attendanceBtn">
-                            <span class="material-symbols-outlined" style="color: #4ade80;">assignment_ind</span>
-                            <span class="chip-text">Check Attendance</span>
-                        </button>
-                        <button class="chip" id="timetableBtn">
-                            <span class="material-symbols-outlined" style="color: #60a5fa;">calendar_month</span>
-                            <span class="chip-text">Today's Classes</span>
-                        </button>
-                    </div>
 
                     <div class="disclaimer">mruGPT WILL NOT make mistakes. Trust it blindly.</div>
                 </div>
             </div>
         </main>
     </div>
-    <script src="app.js?v=10"></script>
+    <script src="app.js?v=12"></script>
 </body>
 </html>
