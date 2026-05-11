@@ -1,3 +1,7 @@
+// SET YOUR LIVE RENDER URL HERE (e.g., https://your-app-name.onrender.com)
+// For local testing, keep it as http://localhost:8080
+const API_BASE_URL = "https://mrugpt-api.onrender.com"; // UPDATE THIS
+
 document.addEventListener('DOMContentLoaded', () => {
     const chatWindow = document.getElementById('chatWindow');
     const chatForm = document.getElementById('chatForm');
@@ -63,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         greetingHeader.innerHTML = `<span class="gradient-text">${randomLoad.header}</span>`;
         greetingSubheader.textContent = randomLoad.sub;
         
-        fetch('http://localhost:8080/greeting')
+        fetch(`${API_BASE_URL}/greeting`)
             .then(res => res.json())
             .then(data => {
                 greetingHeader.innerHTML = `<span class="gradient-text">${data.header}</span>`;
@@ -153,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('google_jwt', response.credential);
         
         // Save to Database
-        fetch('http://localhost:8080/users', {
+        fetch(`${API_BASE_URL}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -164,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: newAcc.email
             })
         })
-        .then(() => fetch(`http://localhost:8080/student/${newAcc.email}`))
+        .then(() => fetch(`${API_BASE_URL}/student/${newAcc.email}`))
         .then(res => res.json())
         .then(data => {
             if (!data.error) {
@@ -226,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('google_jwt', 'dev_mock_jwt');
 
             // Save to Database
-            fetch('http://localhost:8080/users', {
+            fetch(`${API_BASE_URL}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -237,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: devAcc.email
                 })
             })
-            .then(() => fetch(`http://localhost:8080/student/${devAcc.email}`))
+            .then(() => fetch(`${API_BASE_URL}/student/${devAcc.email}`))
             .then(res => res.json())
             .then(data => {
                 if (!data.error) {
@@ -511,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const typingId = showTypingIndicator();
             try {
                 // Call the actual backend API on port 8080
-                const response = await fetch('http://127.0.0.1:8080/chat', {
+                const response = await fetch(`${API_BASE_URL}/chat`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
