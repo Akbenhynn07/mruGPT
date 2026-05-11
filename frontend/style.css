@@ -315,11 +315,8 @@ body, html {
 }
 
 .input-area.initial-state {
-    position: absolute;
-    bottom: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    margin-top: auto;
+    margin-bottom: 5%;
 }
 
 #chatForm {
