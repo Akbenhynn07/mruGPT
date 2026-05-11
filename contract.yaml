@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: MRU AI Assistant
+  version: 1.0.0
+
+paths:
+  /api/attendance:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                subjects:
+                  - name: OS
+                    percentage: 63
+                  - name: DBMS
+                    percentage: 78
+
+  /api/timetable:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                classes:
+                  - subject: OS
+                    time: "10:00 AM"
+                    room: "A-204"

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mruGPT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#131314">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <!-- Particles Container -->
+        <div id="particlesContainer" class="particles-container"></div>
+        
+        <div class="login-card">
+            <h1>mruGPT</h1>
+            <p>Please sign in with your Mallareddy University account to continue.</p>
+            <div id="googleSignInContainer" class="google-btn-container"></div>
+        </div>
+    </div>
+
+    <div class="app-container hidden" id="appContainer">
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-nav">
+                <div class="logo-area">
+                    <span class="logo-text">mruGPT</span>
+                </div>
+                <div class="user-profile" style="position: relative;">
+                    <button class="icon-btn theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme" style="margin-right: 12px;">
+                        <span class="material-symbols-outlined" id="themeIcon">light_mode</span>
+                    </button>
+                    <div class="avatar user-avatar" id="avatarBtn" style="cursor: pointer;">U</div>
+
+                    <!-- Account Dropdown Menu -->
+                    <div class="account-menu hidden" id="accountMenu">
+                        <div class="account-menu-header">
+                            <div class="current-account" id="currentAccountHeader">
+                                <!-- Populated by JS -->
+                            </div>
+                            <button class="manage-account-btn" id="manageAccountBtn">Manage your Account</button>
+                        </div>
+                        
+                        <div class="account-list-section">
+                            <div class="account-list-title" id="toggleAccountsBtn">
+                                <span>More accounts</span>
+                                <span class="material-symbols-outlined" id="toggleAccountsIcon">expand_less</span>
+                            </div>
+                            <div class="account-list" id="accountListContainer">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="account-menu-footer">
+                            <button class="footer-btn" id="addAccountBtn">
+                                <span class="material-symbols-outlined">person_add</span>
+                                Add another account
+                            </button>
+                            <button class="footer-btn" id="signOutBtn">
+                                <span class="material-symbols-outlined">logout</span>
+                                Sign out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Initial Greeting View -->
+                <div class="initial-view" id="initialView">
+                    <div class="greeting">
+                        <div class="floating-widget"></div>
+                        <h1 id="greetingHeader"><span class="gradient-text">Hi Student</span></h1>
+                        <h2 id="greetingSubheader">What can we get done?</h2>
+                    </div>
+                </div>
+
+                <!-- Chat Window -->
+                <div class="chat-window hidden" id="chatWindow">
+                    <!-- Messages -->
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area initial-state" id="inputArea">
+                    <form id="chatForm">
+                        <div class="input-box">
+                            <button type="button" class="icon-btn plus-btn" title="Upload">
+                                <span class="material-symbols-outlined">add_circle</span>
+                            </button>
+                            <input type="text" id="userInput" placeholder="Ask mruGPT" autocomplete="off">
+                            <button type="button" class="icon-btn mic-btn" title="Use mic" id="micBtn">
+                                <span class="material-symbols-outlined">mic</span>
+                            </button>
+                            <button type="submit" id="sendBtn" class="icon-btn send-btn hidden" title="Send message" disabled>
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="suggestion-chips" id="suggestionChips">
+                        <button class="chip" id="attendanceBtn">
+                            <span class="material-symbols-outlined" style="color: #4ade80;">assignment_ind</span>
+                            <span class="chip-text">Check Attendance</span>
+                        </button>
+                        <button class="chip" id="timetableBtn">
+                            <span class="material-symbols-outlined" style="color: #60a5fa;">calendar_month</span>
+                            <span class="chip-text">Today's Classes</span>
+                        </button>
+                    </div>
+
+                    <div class="disclaimer">mruGPT WILL NOT make mistakes. Trust it blindly.</div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
