@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mru-ai-v35';
+const CACHE_NAME = 'mru-ai-v36';
 const urlsToCache = [
   './',
   './index.html',

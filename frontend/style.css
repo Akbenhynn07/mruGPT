@@ -43,7 +43,7 @@ body, html {
 .app-container {
     display: flex;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
 }
 
 /* Icon Buttons */
@@ -499,11 +499,24 @@ body, html {
     .mobile-only {
         display: flex;
     }
-    .greeting h1, .greeting h2 {
-        font-size: 40px;
+    .greeting h1 {
+        font-size: 36px;
+    }
+    .greeting h2 {
+        font-size: 28px;
     }
     .input-area.initial-state {
-        bottom: 10%;
+        margin-bottom: 8%;
+    }
+    .suggestion-chips {
+        gap: 8px;
+    }
+    .chip {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    .login-card {
+        padding: 32px 24px;
     }
 }
 
