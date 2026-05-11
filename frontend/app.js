@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // AI Dynamic Greeting
     if (greetingSubheader) {
         const greetings = [
-            "What can we get done today?",
             "Ready to conquer your classes?",
             "Let's boost your productivity.",
             "How can I make your day easier?",
