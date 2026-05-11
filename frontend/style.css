@@ -30,20 +30,23 @@ body.light-theme {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
-body,
-html {
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     height: 100%;
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
-    overflow: hidden;
 }
 
 .app-container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -74,6 +77,7 @@ html {
     flex-direction: column;
     position: relative;
     background-color: var(--bg-color);
+    width: 100%;
 }
 
 .top-nav {
@@ -131,6 +135,7 @@ html {
     align-items: center;
     overflow-y: auto;
     position: relative;
+    padding-bottom: 200px; /* Space for fixed input area */
 }
 
 /* Initial View */
@@ -325,10 +330,14 @@ html {
 
 /* Input Area */
 .input-area {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 24px 24px;
+    padding: 16px 24px calc(16px + env(safe-area-inset-bottom));
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -336,12 +345,13 @@ html {
 }
 
 .input-area.initial-state {
-    margin-top: auto;
-    margin-bottom: 5%;
+    /* Kept for transition state if needed, but margins removed */
 }
 
 #chatForm {
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .input-box {
@@ -399,6 +409,9 @@ html {
     gap: 12px;
     margin-top: 32px;
     justify-content: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .chip {
@@ -546,10 +559,14 @@ html {
         display: flex;
     }
 
+    .input-area {
+        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    }
+
     .input-box {
-        padding: 12px 16px;
-        min-height: 72px;
-        gap: 12px;
+        padding: 8px 12px;
+        min-height: 64px;
+        gap: 8px;
     }
 
     .input-box input {
