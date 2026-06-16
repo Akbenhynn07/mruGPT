@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const timetableBtn = document.getElementById('timetableBtn');
     const assignmentsBtn = document.getElementById('assignmentsBtn');
     
+    let currentFollowUpContext = null;
+    
     // New UI Elements
     const sidebar = document.getElementById('sidebar');
     const menuBtn = document.getElementById('menuBtn');
@@ -530,7 +532,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function processUserInput(text) {
-        const lower = text.toLowerCase();
+        const lower = text.trim().toLowerCase();
+        
+        // Handle follow-up "yes"
+        if (currentFollowUpContext && ['yes', 'yep', 'yeah', 'sure', 'ok', 'okay', 'y'].includes(lower)) {
+            const context = currentFollowUpContext;
+            currentFollowUpContext = null; // reset
+            if (context === 'assignments') {
+                await fetchAssignments();
+                return;
+            } else if (context === 'timetable') {
+                await fetchTimetable();
+                return;
+            } else if (context === 'attendance') {
+                await fetchAttendance();
+                return;
+            }
+        }
+        
+        // Handle follow-up "no"
+        if (currentFollowUpContext && ['no', 'nope', 'nah', 'n'].includes(lower)) {
+            currentFollowUpContext = null;
+            addBotMessage("<p>Okay! Let me know if you need anything else.</p>");
+            return;
+        }
+        
+        currentFollowUpContext = null; // reset on any other query
+
         if (lower.includes('attendance')) {
             await fetchAttendance();
         } else if (lower.includes('class') || lower.includes('timetable') || lower.includes('schedule')) {
@@ -667,8 +695,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         cardsHTML += `</div>`;
         cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
-        cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Would you like to see your timetable or pending assignments as well?</p>`;
+        cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Would you like to see your timetable next?</p>`;
         addBotMessage(cardsHTML);
+        currentFollowUpContext = 'timetable';
         
         setTimeout(() => {
             const bars = document.querySelectorAll('.progress-bar');
@@ -705,6 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
         cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Do you want to check your pending assignments next?</p>`;
         addBotMessage(cardsHTML);
+        currentFollowUpContext = 'assignments';
     }
 
     function renderAssignmentCards(assignments) {
@@ -731,6 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
         cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Would you like to check your attendance?</p>`;
         addBotMessage(cardsHTML);
+        currentFollowUpContext = 'attendance';
     }
 
     // Voice to Text (Web Speech API)
