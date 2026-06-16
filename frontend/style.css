@@ -135,7 +135,6 @@ body, html {
     align-items: center;
     overflow-y: auto;
     position: relative;
-    padding-bottom: 200px; /* Space for fixed input area */
 }
 
 /* Initial View */
@@ -146,6 +145,7 @@ body, html {
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding-bottom: 200px; /* Space for fixed input area */
     transition: opacity 0.3s ease;
 }
 
@@ -253,6 +253,7 @@ body, html {
     max-width: 800px;
     margin: 0 auto;
     padding: 24px;
+    padding-bottom: 200px; /* Space for fixed input area */
     display: flex;
     flex-direction: column;
     gap: 24px;
