@@ -500,6 +500,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function scrollToBottom() {
+        const messages = chatWindow.querySelectorAll('.message');
+        if (messages.length > 0) {
+            messages[messages.length - 1].scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
