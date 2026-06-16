@@ -511,15 +511,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function scrollToBottom() {
-        const wrapper = document.querySelector('.content-wrapper');
-        if (wrapper) {
-            setTimeout(() => {
-                wrapper.scrollTo({
-                    top: wrapper.scrollHeight,
-                    behavior: 'smooth'
-                });
-            }, 50);
-        }
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 50);
     }
 
     function escapeHTML(str) {
