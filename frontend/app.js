@@ -511,10 +511,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function scrollToBottom() {
-        const messages = chatWindow.querySelectorAll('.message');
-        if (messages.length > 0) {
+        const wrapper = document.querySelector('.content-wrapper');
+        if (wrapper) {
             setTimeout(() => {
-                messages[messages.length - 1].scrollIntoView({ behavior: 'smooth', block: 'end' });
+                wrapper.scrollTo({
+                    top: wrapper.scrollHeight,
+                    behavior: 'smooth'
+                });
             }, 50);
         }
     }
