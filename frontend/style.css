@@ -267,6 +267,7 @@ body, html {
     display: flex;
     gap: 16px;
     animation: fadeIn 0.3s ease-out;
+    scroll-margin-bottom: 220px; /* Accounts for fixed input area during scrollIntoView */
 }
 
 @keyframes fadeIn {
@@ -556,6 +557,10 @@ body, html {
 }
 
 @media (max-width: 768px) {
+    .message {
+        scroll-margin-bottom: 120px;
+    }
+
     .mobile-only {
         display: flex;
     }

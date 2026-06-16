@@ -10,13 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Dynamic auto-scroll based on content
     const scrollObserver = new MutationObserver(() => {
-        // Use a small timeout to let the DOM settle before measuring scrollHeight
-        setTimeout(() => {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-        }, 50);
+        const messages = chatWindow.querySelectorAll('.message');
+        if (messages.length > 0) {
+            messages[messages.length - 1].scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
     });
     scrollObserver.observe(chatWindow, { childList: true, subtree: true });
     const micBtn = document.getElementById('micBtn');
