@@ -561,10 +561,12 @@ document.addEventListener('DOMContentLoaded', () => {
             await new Promise(resolve => setTimeout(resolve, 1000));
             const mockResponse = {
                 subjects: [
-                    { name: 'OS', percentage: 63 },
-                    { name: 'DBMS', percentage: 78 },
-                    { name: 'Networks', percentage: 85 },
-                    { name: 'AI', percentage: 92 }
+                    { name: 'Reinforcement Learning', percentage: 63 },
+                    { name: 'Computer Vision', percentage: 78 },
+                    { name: 'Cloud computing', percentage: 85 },
+                    { name: 'Software Quality Testing', percentage: 92 },
+                    { name: 'Deep Learning', percentage: 88 },
+                    { name: 'Generative AI', percentage: 95 }
                 ]
             };
             removeTypingIndicator(typingId);
@@ -585,9 +587,12 @@ document.addEventListener('DOMContentLoaded', () => {
             await new Promise(resolve => setTimeout(resolve, 1000));
             const mockResponse = {
                 classes: [
-                    { subject: 'OS', time: '10:00 AM', room: 'A-204' },
-                    { subject: 'DBMS', time: '11:30 AM', room: 'B-101' },
-                    { subject: 'AI Lab', time: '02:00 PM', room: 'Lab-3' }
+                    { subject: 'Reinforcement Learning', time: '09:00 AM', room: 'A-204' },
+                    { subject: 'Computer Vision', time: '10:00 AM', room: 'B-101' },
+                    { subject: 'Cloud computing', time: '11:00 AM', room: 'C-305' },
+                    { subject: 'Software Quality Testing', time: '01:00 PM', room: 'A-204' },
+                    { subject: 'Deep Learning', time: '02:00 PM', room: 'B-101' },
+                    { subject: 'Generative AI', time: '03:00 PM', room: 'Lab-3' }
                 ]
             };
             removeTypingIndicator(typingId);

@@ -78,9 +78,15 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    prompt = req.query
+    subjects = "Reinforcement Learning, Computer Vision, Cloud computing, Software Quality Testing, Deep Learning, Generative AI"
+    system_context = f"System Context: You are mruGPT, an agentic AI assistant for Mallareddy University. You are talking to a student. Their enrolled subjects are: {subjects}."
+    
     if req.context:
-        prompt = f"System Context: You are mruGPT, an agentic AI assistant for Mallareddy University. You are talking to a student. Their current data is: {req.context}. You must answer their questions accurately using this data if relevant, and assist them with any other general college-related inquiries.\n\nUser Question: {req.query}"
+        system_context += f" Their current data is: {req.context}."
+        
+    system_context += " You must answer their questions accurately using this data if relevant, and assist them with any other general college-related inquiries."
+    
+    prompt = f"{system_context}\n\nUser Question: {req.query}"
         
     response = requests.post(
         "http://localhost:11434/api/generate",
@@ -103,8 +109,8 @@ def add_user(user: User):
         # Mock personal data for new users
         pending_fee = "₹15,000" if "developer" in user.email else "₹0"
         attendance = "85%" if "developer" in user.email else "92%"
-        timetable = "10:00 AM - Physics\n11:00 AM - Computer Science"
-        assignments = "1. AI Project (Due: Tomorrow)\n2. Math Worksheet (Due: Friday)"
+        timetable = "09:00 AM - Reinforcement Learning\n10:00 AM - Computer Vision\n11:00 AM - Cloud computing\n01:00 PM - Software Quality Testing\n02:00 PM - Deep Learning\n03:00 PM - Generative AI"
+        assignments = "1. Computer Vision Project (Due: Tomorrow)\n2. Deep Learning Worksheet (Due: Friday)"
         
         cursor.execute(
             "INSERT INTO users (id, name, email, pending_fee, attendance, timetable, assignments) VALUES (?, ?, ?, ?, ?, ?, ?)",
