@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatForm = document.getElementById('chatForm');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
+    
+    // Dynamic auto-scroll based on content
+    const scrollObserver = new MutationObserver(() => {
+        // Use a small timeout to let the DOM settle before measuring scrollHeight
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 50);
+    });
+    scrollObserver.observe(chatWindow, { childList: true, subtree: true });
     const micBtn = document.getElementById('micBtn');
     
     const attendanceBtn = document.getElementById('attendanceBtn');
@@ -473,18 +485,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="content"><p>${escapeHTML(text)}</p></div>
         `;
         chatWindow.appendChild(msgDiv);
-        scrollToBottom();
     }
 
-    function addBotMessage(contentHTML) {
+    function addBotMessage(content) {
+        const id = 'msg-' + Date.now();
         const msgDiv = document.createElement('div');
         msgDiv.className = 'message bot';
+        msgDiv.id = id;
         msgDiv.innerHTML = `
-            <div class="avatar"><span class="material-symbols-outlined">temp_preferences_custom</span></div>
-            <div class="content">${contentHTML}</div>
+            <div class="avatar"><span class="material-symbols-outlined">auto_awesome</span></div>
+            <div class="content">${content}</div>
         `;
         chatWindow.appendChild(msgDiv);
-        scrollToBottom();
+        return id;
     }
 
     function showTypingIndicator() {
@@ -501,22 +514,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         chatWindow.appendChild(msgDiv);
-        scrollToBottom();
         return id;
     }
 
     function removeTypingIndicator(id) {
         const el = document.getElementById(id);
         if (el) el.remove();
-    }
-
-    function scrollToBottom() {
-        setTimeout(() => {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-        }, 50);
     }
 
     function escapeHTML(str) {
