@@ -666,7 +666,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         cardsHTML += `</div>`;
-        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Would you like to see your timetable or pending assignments as well?</p>`;
+        cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
+        cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Would you like to see your timetable or pending assignments as well?</p>`;
         addBotMessage(cardsHTML);
         
         setTimeout(() => {
@@ -701,7 +702,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         cardsHTML += `</div>`;
-        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Do you want to check your pending assignments next?</p>`;
+        cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
+        cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Do you want to check your pending assignments next?</p>`;
         addBotMessage(cardsHTML);
     }
 
@@ -726,7 +728,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         cardsHTML += `</div>`;
-        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Would you like to check your attendance?</p>`;
+        cardsHTML += `<hr style="border: 0; height: 1px; background: var(--border-color); margin: 24px 0 16px 0;">`;
+        cardsHTML += `<p style="font-size: 18px; color: var(--text-primary); font-weight: 500;">Would you like to check your attendance?</p>`;
         addBotMessage(cardsHTML);
     }
 
