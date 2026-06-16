@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const attendanceBtn = document.getElementById('attendanceBtn');
     const timetableBtn = document.getElementById('timetableBtn');
+    const assignmentsBtn = document.getElementById('assignmentsBtn');
     
     // New UI Elements
     const sidebar = document.getElementById('sidebar');
@@ -454,6 +455,14 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchTimetable();
     });
 
+    if (assignmentsBtn) {
+        assignmentsBtn.addEventListener('click', () => {
+            startChat();
+            addUserMessage("Show my pending assignments");
+            fetchAssignments();
+        });
+    }
+
     function addUserMessage(text) {
         const msgDiv = document.createElement('div');
         msgDiv.className = 'message user';
@@ -526,6 +535,8 @@ document.addEventListener('DOMContentLoaded', () => {
             await fetchAttendance();
         } else if (lower.includes('class') || lower.includes('timetable') || lower.includes('schedule')) {
             await fetchTimetable();
+        } else if (lower.includes('assignment') || lower.includes('pending')) {
+            await fetchAssignments();
         } else {
             const typingId = showTypingIndicator();
             try {
@@ -605,6 +616,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function fetchAssignments() {
+        const typingId = showTypingIndicator();
+        // Since we are waiting for ERP, we just use hardcoded mock data for now
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const assignments = [
+            { title: "Computer Vision Project", due: "Tomorrow" },
+            { title: "Deep Learning Worksheet", due: "Friday" },
+            { title: "Generative AI Lab Record", due: "Next Monday" }
+        ];
+        removeTypingIndicator(typingId);
+        renderAssignmentCards(assignments);
+    }
+
     function getAttendanceColor(percentage) {
         if (percentage >= 75) return 'var(--success)';
         if (percentage >= 65) return 'var(--warning)';
@@ -642,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         cardsHTML += `</div>`;
+        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Would you like to see your timetable or pending assignments as well?</p>`;
         addBotMessage(cardsHTML);
         
         setTimeout(() => {
@@ -676,6 +701,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         cardsHTML += `</div>`;
+        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Do you want to check your pending assignments next?</p>`;
+        addBotMessage(cardsHTML);
+    }
+
+    function renderAssignmentCards(assignments) {
+        if (assignments.length === 0) {
+            addBotMessage("<p>You have no pending assignments! 🎉</p>");
+            return;
+        }
+
+        let cardsHTML = `<p>Here are your pending assignments:</p>`;
+        cardsHTML += `<div class="cards-container">`;
+        
+        assignments.forEach(ass => {
+            cardsHTML += `
+                <div class="card">
+                    <div class="card-title">${escapeHTML(ass.title)}</div>
+                    <div class="card-subtitle" style="color: var(--danger); margin-top: 8px;">
+                        <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: text-bottom;">event</span> Due: ${escapeHTML(ass.due)}
+                    </div>
+                </div>
+            `;
+        });
+        
+        cardsHTML += `</div>`;
+        cardsHTML += `<p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Would you like to check your attendance?</p>`;
         addBotMessage(cardsHTML);
     }
 

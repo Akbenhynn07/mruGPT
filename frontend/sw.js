@@ -1,9 +1,9 @@
-const CACHE_NAME = 'mru-ai-v47';
+const CACHE_NAME = 'mru-ai-v48';
 const urlsToCache = [
   './',
   './index.html',
-  './style.css?v=22',
-  './app.js?v=22',
+  './style.css?v=24',
+  './app.js?v=24',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
