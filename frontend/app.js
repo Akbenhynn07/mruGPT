@@ -500,17 +500,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function scrollToBottom() {
-        chatWindow.scrollTo({
-            top: chatWindow.scrollHeight,
-            behavior: 'smooth'
-        });
-        
-        const wrapper = document.querySelector('.content-wrapper');
-        if (wrapper) {
-            wrapper.scrollTo({
-                top: wrapper.scrollHeight,
-                behavior: 'smooth'
-            });
+        const messages = chatWindow.querySelectorAll('.message');
+        if (messages.length > 0) {
+            setTimeout(() => {
+                messages[messages.length - 1].scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 50);
         }
     }
 
